@@ -11,6 +11,7 @@ import UIKit
 
 class SwipingController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+
     let pages = [
         Page(imageName: "001", headerText: "Join use today in our fun and games!", bodyText: "Are you ready for loads and loads of fun? Don't wait any longer! We hope to see you in our stores soon."),
         Page(imageName: "002", headerText: "Subscribe and get coupons on our daily events", bodyText: "Get notified of the savings immediately when we announce them on our website. Make your future."),
@@ -51,7 +52,7 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 
-    private lazy var pageControl: UIPageControl = {
+    lazy var pageControl: UIPageControl = {
         let pc = UIPageControl()
         pc.currentPage = 0
         pc.numberOfPages = pages.count
@@ -110,36 +111,6 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         collectionView?.backgroundColor = .white
         collectionView?.register(PageCell.self, forCellWithReuseIdentifier: "cellId")
         collectionView.isPagingEnabled = true
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return pages.count
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! PageCell
-
-        let page = pages[indexPath.item]
-        cell.page = page
-
-
-
-//        cell.imageView.image = UIImage(named: page.imageName)
-//        cell.descriptionTextView.text = page.headerText
-
-//        let imageName = imageNames[indexPath.item]
-//        cell.imageView.image = UIImage(named: imageName)
-//        cell.descriptionTextView.text = headerStrings[indexPath.item]
-        //        cell.backgroundColor = indexPath.item % 2 == 0 ? .red : .green
-        return cell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.height)
     }
 
 }
